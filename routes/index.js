@@ -529,11 +529,11 @@ router.get('/r/:roomId', function (req, res, next) {
     if (room) {
       console.log('Room ' + roomId + ' has state ' + room.toString());
       // Check if room is full
-      // if (room.getOccupancy() >= 2) {
-      //   console.log('Room ' + roomId + ' is full');
-      //   res.render('full_template', {});
-      //   return;
-      // }
+      if (room.getOccupancy() >= 2) {
+        console.log('Room ' + roomId + ' is full');
+        res.render('full_template', {});
+        return;
+      }
     }
     // Parse out room parameters from request.
     var params = getRoomParameters(req, roomId, null, null);
